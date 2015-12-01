@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class Puzzle1b {
 
-	private final static String INPUT_FILE_PATH = "/Users/devfloater56/Documents/mars_workspace/AdventOfCode/files/puzzle1/puzzle1input.txt";
+	private final static String INPUT_FILE_PATH = "files/puzzle1/puzzle1input.txt";
 	
 	private final static int OPEN_PARENTHESES = '(';
 	private final static int CLOSE_PARENTHESES = ')';
@@ -33,7 +33,6 @@ public class Puzzle1b {
 				}else if (i == CLOSE_PARENTHESES){
 					floor--;
 				}
-				System.out.println(position);
 				
 				if(floor == -1){
 					System.out.println("floor: " + floor + " position: " + position);
@@ -42,7 +41,6 @@ public class Puzzle1b {
 				position++;
 			}
 			
-			System.out.println("floor: " + floor);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

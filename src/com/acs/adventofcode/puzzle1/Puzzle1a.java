@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class Puzzle1a {
 
-	private final static String INPUT_FILE_PATH = "/Users/devfloater56/Documents/mars_workspace/AdventOfCode/files/puzzle1/puzzle1input.txt";
+	private final static String INPUT_FILE_PATH = "files/puzzle1/puzzle1input.txt";
 	
 	private final static int OPEN_PARENTHESES = '(';
 	private final static int CLOSE_PARENTHESES = ')';
@@ -25,7 +25,6 @@ public class Puzzle1a {
 			isr = new InputStreamReader(fis);
 			
 			int i;
-			int position = 1;
 			while((i = isr.read()) != -1)
 			{
 				
@@ -34,8 +33,6 @@ public class Puzzle1a {
 				}else if (i == CLOSE_PARENTHESES){
 					floor--;
 				}
-				System.out.println(position);
-				
 			}
 			
 			System.out.println("floor: " + floor);
