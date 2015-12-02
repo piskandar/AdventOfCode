@@ -6,13 +6,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.acs.adventofcode.puzzle2.model.BoxDimensions;
 
-public class Puzzle2a {
+public class Puzzle2 {
 
 	private final class DimensionIndexes {
 		public static final int LENGTH = 1;
@@ -30,10 +29,8 @@ public class Puzzle2a {
 			String line = br.readLine();
 			List<BoxDimensions> dimensions = new ArrayList<>();
 			while(line != null){
-				System.out.println(line);
 				BoxDimensions boxDimensions = dimensionsFromLine(line);
 				dimensions.add(boxDimensions);
-				System.out.println(boxDimensions);
 				line = br.readLine();
 			}
 			
@@ -69,7 +66,7 @@ public class Puzzle2a {
 			totalSquareFeet += boxDimensions.calculateSurfaceArea();
 			totalSquareFeet += boxDimensions.smallestSideArea();
 		}
-		System.out.println(totalSquareFeet);
+		System.out.println("Puzzle 2a answer: " + totalSquareFeet);
 	}
 
 	private static BoxDimensions dimensionsFromLine(String line) {
