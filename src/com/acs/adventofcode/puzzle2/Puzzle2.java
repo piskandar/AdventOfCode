@@ -31,10 +31,12 @@ public class Puzzle2 {
 			while(line != null){
 				BoxDimensions boxDimensions = dimensionsFromLine(line);
 				dimensions.add(boxDimensions);
+				System.out.println(boxDimensions);
 				line = br.readLine();
 			}
 			
 			calculateTotalSquareFootage(dimensions);
+			calculateTotalRibbonLength(dimensions);
 			
 			
 		} catch (Exception e) {
@@ -57,6 +59,16 @@ public class Puzzle2 {
 			}
 		}
 		
+	}
+
+	private static void calculateTotalRibbonLength(List<BoxDimensions> dimensions) {
+		
+		int totalFeet = 0;
+		for (BoxDimensions boxDimensions : dimensions) {
+			totalFeet += boxDimensions.smallestParameter();
+			totalFeet += boxDimensions.calculateVolume();
+		}
+		System.out.println("Puzzle 2b answer: " + totalFeet);
 	}
 
 	private static void calculateTotalSquareFootage(List<BoxDimensions> dimensions) {

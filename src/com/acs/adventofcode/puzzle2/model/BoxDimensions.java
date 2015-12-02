@@ -55,10 +55,25 @@ public class BoxDimensions {
 		return min;
 	} 
 	
+	public int smallestParameter(){
+		int side1parameter = length + width + length + width;
+		int side2parameter = width + height + width + height;
+		int side3parameter = height + length + height + length;
+		
+		int min = Integer.MAX_VALUE;
+		min = Math.min(min, side1parameter);
+		min = Math.min(min, side2parameter);
+		min = Math.min(min, side3parameter);
+		return min;
+	}
+	
+	public int calculateVolume(){
+		return length * width * height;
+	}
 	@Override
 	public String toString() {
 		
-		return String.format("L: %d W: %d H: %d, surfaceArea: %d, min: %d", length, width, height, calculateSurfaceArea(), smallestSideArea());
+		return String.format("L: %d W: %d H: %d, surfaceArea: %d, min: %d, volume: %d, smallest parameter: %d", length, width, height, calculateSurfaceArea(), smallestSideArea(), calculateVolume(), smallestParameter());
 	}
 	
 }
