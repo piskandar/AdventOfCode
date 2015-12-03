@@ -39,31 +39,35 @@ public class BoxDimensions {
 	}
 	
 	public int calculateSurfaceArea(){
-		int surfaceArea = (2*length*width) + (2*width*height) + (2*height*length);
-		return surfaceArea;
+		return (2*length*width) + (2*width*height) + (2*height*length);
 	}
 	
 	public int smallestSideArea(){
-		int side1area = length * width;
-		int side2area = width * height;
-		int side3area = height * length;
+		
+		int[] sideAreas = { length * width, width * height, height * length };
 		
 		int min = Integer.MAX_VALUE;
-		min = Math.min(min, side1area);
-		min = Math.min(min, side2area);
-		min = Math.min(min, side3area);
+		for (int i = 0; i < sideAreas.length; i++) {
+			int area = sideAreas[i];
+			min = Math.min(min, area);
+		}
 		return min;
 	} 
 	
 	public int smallestParameter(){
-		int side1parameter = length + width + length + width;
-		int side2parameter = width + height + width + height;
-		int side3parameter = height + length + height + length;
+		
+		int[] sidePerimeters = { 	
+									2 * (length + width), 
+									2 * (width + height), 
+									2 * (height + length) 
+							   };
 		
 		int min = Integer.MAX_VALUE;
-		min = Math.min(min, side1parameter);
-		min = Math.min(min, side2parameter);
-		min = Math.min(min, side3parameter);
+		for (int i = 0; i < sidePerimeters.length; i++) {
+			int perimeter = sidePerimeters[i];
+			min = Math.min(min, perimeter);
+		}
+		
 		return min;
 	}
 	

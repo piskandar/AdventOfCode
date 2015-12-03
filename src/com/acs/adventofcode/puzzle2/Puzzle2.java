@@ -31,7 +31,7 @@ public class Puzzle2 {
 			while(line != null){
 				BoxDimensions boxDimensions = dimensionsFromLine(line);
 				dimensions.add(boxDimensions);
-				System.out.println(boxDimensions);
+				
 				line = br.readLine();
 			}
 			
