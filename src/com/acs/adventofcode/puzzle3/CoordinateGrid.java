@@ -3,60 +3,34 @@ package com.acs.adventofcode.puzzle3;
 public class CoordinateGrid {
 	
 	
-	public class Point{
+	public class Point {
 		int x;
 		int y;
 		
-		@Override
-		public String toString() {
-			return "x: " + x + " y: " + y;
+		public Point(int x, int y){
+			this.x = x;
+			this.y = y;
 		}
 	}
 	
-	
+	private int placesVisited;
 	private Point currentPoint;
 	private int[][] locationGrid;
 	
 	public CoordinateGrid(int width, int height){
 		locationGrid = new int[width][height];
-		currentPoint = getCenterPoint(width, height);
-		System.out.println(currentPoint);
-		locationGrid[currentPoint.y][currentPoint.x] = 1;
+		currentPoint = new Point(width/2, height/2);
+		visitLocation(currentPoint);
+		
 	}
 	
-	private Point getCenterPoint(int width, int height) {
-		
-		Point p = new Point();
-		p.x = width/2;
-		p.y = height/2;
-		
-		
-		
-		return p;
+	private void visitLocation(Point point){
+		if(locationGrid[point.y][point.x] != 1){
+			locationGrid[point.y][point.x] = 1;
+			placesVisited++;
+		}
 	}
 
-	public void printGrid(){
-		for (int i = 0; i < locationGrid.length; i++) {
-			for (int j = 0; j < locationGrid[i].length; j++) {
-				System.out.print(locationGrid[i][j] + "\t");
-			}
-			System.out.println();
-		}
-	}
-	
-	public void countSpacesVisited(){
-		int count = 0;
-		for (int i = 0; i < locationGrid.length; i++) {
-			for (int j = 0; j < locationGrid[i].length; j++) {
-				if(locationGrid[i][j] == 1){
-					count++;
-				}
-			}
-			
-		}
-		System.out.println("count: " + count);
-	}
-	
 	public void movePoint(Direction direction){
 		switch(direction){
 		case NORTH:
@@ -73,6 +47,11 @@ public class CoordinateGrid {
 			break;
 		}
 		
-		locationGrid[currentPoint.y][currentPoint.x] = 1;
+		visitLocation(currentPoint);
+		
+	}
+
+	public int getNumberOfPlacesVisited() {
+		return placesVisited;
 	}
 }

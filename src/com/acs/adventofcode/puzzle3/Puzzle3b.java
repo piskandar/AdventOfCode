@@ -15,6 +15,7 @@ public class Puzzle3b {
 	private final static int SOUTH = 'v';
 	private final static int WEST = '<';
 	
+//	2631
 	public static void main(String[] args) {
 
 		CoordinateGridWithRobot coordinateGrid =new CoordinateGridWithRobot(400,400);
@@ -33,7 +34,6 @@ public class Puzzle3b {
 				boolean santaMove = (position % 2) == 0;
 				switch (i) {
 				case NORTH:
-					
 					coordinateGrid.movePoint(Direction.NORTH,santaMove);
 					break;
 				case SOUTH:

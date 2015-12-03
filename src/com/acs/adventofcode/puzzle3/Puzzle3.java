@@ -14,9 +14,10 @@ public class Puzzle3 {
 	private final static int SOUTH = 'v';
 	private final static int WEST = '<';
 	
+	//2572
 	public static void main(String[] args) {
 
-		CoordinateGrid coordinateGrid =new CoordinateGrid(200,200);
+		CoordinateGrid coordinateGrid = new CoordinateGrid(200,200);
 		
 		FileInputStream fis = null;
 		InputStreamReader isr = null;
@@ -30,28 +31,23 @@ public class Puzzle3 {
 			{
 				switch (i) {
 				case NORTH:
-					System.out.println("NORTH");
 					coordinateGrid.movePoint(Direction.NORTH);
 					break;
 				case SOUTH:
-					System.out.println("SOUTH");
 					coordinateGrid.movePoint(Direction.SOUTH);
 					break;
 				case WEST:
-					System.out.println("WEST");
 					coordinateGrid.movePoint(Direction.WEST);
 					break;
 				case EAST:
-					System.out.println("EAST");
 					coordinateGrid.movePoint(Direction.EAST);
 					break;
 				default:
-					System.err.println("INVALID DIRECTION");
 					break;
 				}
 				
 			}
-			coordinateGrid.countSpacesVisited();
+			System.out.println(coordinateGrid.getNumberOfPlacesVisited());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,7 +56,6 @@ public class Puzzle3 {
 				try {
 					isr.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -69,7 +64,6 @@ public class Puzzle3 {
 				try {
 					fis.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
