@@ -4,7 +4,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Puzzle4 {
-
+//	117946
+//	3938038
+	
 	public static void main(String[] args) throws NoSuchAlgorithmException {
 		String input = "ckczppom";
 		System.out.println(getNum(input, "00000"));
