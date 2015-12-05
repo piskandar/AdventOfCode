@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.acs.adventofcode.puzzle2.model.BoxDimensions;
-
 public class Puzzle5 {
 
 	private static final char[] VOWELS = { 'a', 'e', 'i', 'o', 'u' };
@@ -36,8 +34,6 @@ public class Puzzle5 {
 				}
 				line = br.readLine();
 			}
-			
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,23 +112,7 @@ public class Puzzle5 {
 
 	public boolean doesNotContainsSpecificSubstring(String str) {
 		// //ab, cd, pq, or xy
-		if (str.contains("ab")) {
-			return false;
-		}
-
-		if (str.contains("cd")) {
-			return false;
-		}
-
-		if (str.contains("pq")) {
-			return false;
-		}
-
-		if (str.contains("xy")) {
-			return false;
-		}
-		
-		return true;
+		return !(str.contains("ab") ||  str.contains("cd") || str.contains("pq") || str.contains("xy"));
 	}
 
 }
