@@ -112,5 +112,65 @@ public class Puzzle6Tests {
 		assertEquals(484, range.start);
 		assertEquals(608, range.end);
 	}
+	
+	
+	@Test
+	public void testAddBrightness(){
+		puzzle = new Puzzle6(10);
+		
+		int brightness = puzzle.processCommand2("turn on 0,0 through 9,9");
+		
+		assertEquals(100, brightness);
+		
+		brightness = puzzle.processCommand2("turn on 0,0 through 9,9");
+		
+		assertEquals(200, brightness);
+	}
+	
+	@Test
+	public void testDim(){
+		puzzle = new Puzzle6(10);
+		
+		int brightness = puzzle.processCommand2("turn on 0,0 through 9,9");
+		
+		assertEquals(100, brightness);
+		
+		brightness = puzzle.processCommand2("turn on 0,0 through 9,9");
+		
+		assertEquals(200, brightness);
+		
+		brightness = puzzle.processCommand2("turn off 0,0 through 9,9");
+		
+		assertEquals(100, brightness);
+		
+		brightness = puzzle.processCommand2("turn off 0,0 through 9,9");
+		
+		assertEquals(0, brightness);
+		
+		brightness = puzzle.processCommand2("turn off 0,0 through 9,9");
+		
+		assertEquals(0, brightness);
+	}
+	
+	@Test
+	public void testToggle2(){
+		puzzle = new Puzzle6(10);
+		
+		int brightness = puzzle.processCommand2("turn on 0,0 through 9,9");
+		
+		assertEquals(100, brightness);
+		
+		brightness = puzzle.processCommand2("turn off 0,0 through 9,9");
+		
+		assertEquals(0, brightness);
+		
+		brightness = puzzle.processCommand2("toggle 0,0 through 9,9");
+		
+		assertEquals(200, brightness);
+		
+		brightness = puzzle.processCommand2("toggle 0,0 through 9,9");
+		
+		assertEquals(400, brightness);
+	}
 
 }

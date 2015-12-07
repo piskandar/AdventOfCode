@@ -28,6 +28,48 @@ public class Puzzle6 {
 	}
 	
 	public static void main(String[] args) {
+		performPart1();
+		performPart2();
+	}
+	private static void performPart2() {
+		FileReader fr = null;
+		BufferedReader br = null;
+		Puzzle6 puzzle6 = new Puzzle6(1000);
+		try {
+			fr = new FileReader(new File("files/puzzle6/puzzle6input.txt"));
+			br = new BufferedReader(fr);
+			
+			String line = br.readLine();
+			
+			while(line != null){
+				puzzle6.processCommand2(line);
+				line = br.readLine();
+			}
+			
+			System.out.println(puzzle6.countBrightness());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(br != null){
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(fr != null){
+				try {
+					fr.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	private static void performPart1() {
 		FileReader fr = null;
 		BufferedReader br = null;
 		Puzzle6 puzzle6 = new Puzzle6(1000);
@@ -63,7 +105,6 @@ public class Puzzle6 {
 				}
 			}
 		}
-		
 	}
 	
 	
@@ -219,6 +260,94 @@ public class Puzzle6 {
 		}
 		
 		return null;
+	}
+
+	public int processCommand2(String line) {
+		Command command = getCommandFromLine(line);
+		Range startRange = getStartRange(line);
+		Range endRange = getEndRange(line);
+		
+		switch (command) {
+		case TURN_ON:
+			turnUpBrightness(startRange, endRange);
+			break;
+		case TURN_OFF:
+			turnDownBrightness(startRange, endRange);
+			break;
+		case TOGGLE:
+			toggleBrightness(startRange, endRange);
+			break;
+		default:
+			break;
+		}
+		
+		int lightsOn = countBrightness();
+		
+		return lightsOn;
+	}
+
+	private void toggleBrightness(Range startRange, Range endRange) {
+		int startX = startRange.start;
+		int endX = endRange.start;
+		
+		int startY = startRange.end;
+		int endY = endRange.end;
+		
+		for (int i = startX; i <= endX ; i++) {
+			
+			for (int j = startY; j <= endY; j++) {
+				lightGrid[i][j] += 2;
+		
+			}
+		}
+	}
+
+	private void turnDownBrightness(Range startRange, Range endRange) {
+
+		int startX = startRange.start;
+		int endX = endRange.start;
+		
+		int startY = startRange.end;
+		int endY = endRange.end;
+		
+		for (int i = startX; i <= endX ; i++) {
+			
+			for (int j = startY; j <= endY; j++) {
+				lightGrid[i][j]--;
+				if(lightGrid[i][j] <= 0){
+					lightGrid[i][j] = 0;
+				}
+		
+			}
+		}
+	}
+
+	private int countBrightness() {
+		int count = 0;
+		for (int i = 0; i < lightGrid.length; i++) {
+			for (int j = 0; j < lightGrid[i].length; j++) {
+				
+				count += lightGrid[i][j];;
+				
+			}
+		}
+		return count;
+	}
+
+	private void turnUpBrightness(Range startRange, Range endRange) {
+		int startX = startRange.start;
+		int endX = endRange.start;
+		
+		int startY = startRange.end;
+		int endY = endRange.end;
+		
+		for (int i = startX; i <= endX ; i++) {
+			
+			for (int j = startY; j <= endY; j++) {
+				lightGrid[i][j]++;
+		
+			}
+		}
 	}
 
 }
