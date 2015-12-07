@@ -14,13 +14,16 @@ public class Puzzle5 {
 	
 	public static void main(String[] args) {
 		Puzzle5 puzzle5 = new Puzzle5();
-		System.out.println(puzzle5.numberOfNiceNames());
+		int[] niceCounts = puzzle5.numberOfNiceNames();
+		System.out.println("nice 1: " + niceCounts[0]);
+		System.out.println("nice 2: " + niceCounts[1]);
 	}
 	
-	public int numberOfNiceNames(){
+	public int[] numberOfNiceNames(){
 		FileReader fr = null;
 		BufferedReader br = null;
-		int niceCount = 0;
+		int nice1Count = 0;
+		int nice2Count = 0;
 		try {
 			fr = new FileReader(new File("files/puzzle5/puzzle5input.txt"));
 			br = new BufferedReader(fr);
@@ -30,7 +33,11 @@ public class Puzzle5 {
 			while(line != null){
 				
 				if(isNice(line.trim())){
-					niceCount++;
+					nice1Count++;
+				}
+				
+				if(isNice2(line.trim())){
+					nice2Count++;
 				}
 				line = br.readLine();
 			}
@@ -55,7 +62,7 @@ public class Puzzle5 {
 			}
 		}
 		
-		return niceCount;
+		return new int[] {nice1Count, nice2Count};
 		
 	}
 	
@@ -113,6 +120,78 @@ public class Puzzle5 {
 	public boolean doesNotContainsSpecificSubstring(String str) {
 		// //ab, cd, pq, or xy
 		return !(str.contains("ab") ||  str.contains("cd") || str.contains("pq") || str.contains("xy"));
+	}
+
+	public boolean isNice2(String str) {
+		boolean isNice = containsPair(str);
+		isNice = isNice && letterRepeats(str);
+		return isNice;
+	}
+
+	public boolean containsPair(String str) {
+		
+		if(str.length() < 2) { //fail fast
+			return false;
+		}
+		
+		//get pairs of characters
+		List<String> pairs = getPairsOfCharacters(str);
+		int count = 0;
+		for (String pair : pairs) {
+			count = getCount(str, pair);
+			if(count >= 2){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private int getCount(String str, String substring){
+		int lastIndex = 0;
+		int count = 0;
+
+		while(lastIndex != -1){
+
+		    lastIndex = str.indexOf(substring,lastIndex);
+
+		    if(lastIndex != -1){
+		        count ++;
+		        lastIndex += substring.length();
+		    }
+		}
+		return count;
+	}
+
+	public  List<String> getPairsOfCharacters(String str) {
+
+		char[] buffer = new char[2];
+		List<String> pairs = new ArrayList<>();
+		
+		for (int i = 0; i < str.length() - 1; i++) {
+			buffer[0] = str.charAt(i);
+			buffer[1] = str.charAt(i + 1);
+			
+			String pair = new String(buffer);
+			if(!pairs.contains(pair)){
+				pairs.add(pair);
+			}
+		}
+		
+		return pairs;
+	}
+
+	public boolean letterRepeats(String str) {
+		for (int i = 0; i < str.length() - 2; i++) {
+			
+			char currentChar = str.charAt(i);
+			char repeat = str.charAt(i + 2);
+			if(currentChar == repeat){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 }

@@ -63,5 +63,35 @@ public class Puzzle5Tests {
 		assertFalse(puzzle.isNice("dvszwmarrgswjxmb"));
 		
 	}
+	
+	
+	@Test
+	public void testNewIsNice(){
+		assertTrue(puzzle.isNice2("qjhvhtzxzqqjkmpb"));
+		assertTrue(puzzle.isNice2("xxyxx"));
+		assertFalse(puzzle.isNice2("uurcxstgmygtbstg"));
+		assertFalse(puzzle.isNice2("ieodomkazucvgmuy"));
+	}
+	
+	@Test
+	public void testContainsPair(){
+		assertTrue(puzzle.containsPair("xyxy"));
+		assertTrue(puzzle.containsPair("aabcdefgaa"));
+		assertFalse(puzzle.containsPair("aaa"));
+	}
+	
+	@Test
+	public void testLetterRepeats(){
+		assertTrue(puzzle.letterRepeats("xyx"));
+		assertTrue(puzzle.letterRepeats("abcdefeghi"));
+		assertTrue(puzzle.letterRepeats("aaa"));
+	}
+	
+	
+	@Test
+	public void testGetPairsOfCharacters(){
+		assertEquals(2, puzzle.getPairsOfCharacters("abc").size());
+		assertEquals(3, puzzle.getPairsOfCharacters("xxyxx").size());
+	}
 
 }
