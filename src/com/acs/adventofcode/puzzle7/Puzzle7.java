@@ -95,7 +95,10 @@ public class Puzzle7 {
 			
 			if(!entry.getKey().equals("a")){
 				System.out.println(entry.getKey() + " = " + entry.getValue()) ;
-				if(entry.getKey().equals("b") || entry.getKey().equals("c")){
+				if(entry.getKey().equals("b")){
+					evaluatedValues.put(entry.getKey(), 956);
+					
+				}else if(entry.getKey().equals("c")){
 					evaluatedValues.put(entry.getKey(), Integer.parseInt(entry.getValue()));
 				}else{
 					Object[] processed = process(entry.getValue() + " -> " + entry.getKey());
